@@ -4,28 +4,27 @@ agent any
  pollSCM('* * * * *')
  }
  stages {
-Jenkins-practice.md 2024-08-06
-8 / 63
+
  stage('Checkout') {
  steps {
  git branch: 'main',
- url: '<URL>'
+ url: 'https://github.com/Rejoice-mii/java'
  }
  }
  stage('Build') {
  steps {
- sh '<MAVEN_BUILD_COMMAND>'
+ sh 'mvn package'
  }
  }
  stage('Test') {
  steps {
- sh '<MAVEN_TEST_COMMAND>'
+ sh 'mvn test'
  }
  }
  stage('Deploy') {
  steps {
- deploy adapters: [tomcat9(credentialsId: '<NAME>', url: '<URL>')],
-contextPath: null, war: 'path/to/war'
+ deploy adapters: [tomcat9(credentialsId: 'tomcat-manager', url: 'http://192.168.56.102:8080')],
+contextPath: null, war: 'target/hello-world.war'
  }
  }
  }
