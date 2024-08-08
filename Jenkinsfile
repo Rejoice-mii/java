@@ -3,7 +3,6 @@ pipeline {
         label "jenkins-node"
     }
     
-    agent any
     triggers {
     pollSCM('* * * * *')
     }
