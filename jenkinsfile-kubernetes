@@ -36,7 +36,7 @@ spec:
     stage('Checkout') {
         steps {
             container('maven') {
-                git branch: 'main', url: '<URL>'
+                git branch: 'main', url: 'https://github.com/Rejoice-mii/java'
             }
          }
      }
@@ -57,7 +57,7 @@ spec:
     stage('Build & Tag & Push Docker Image') {
         steps {
             container('kaniko') {
-                sh 'executor --context=dir://$WORKSPACE --destination= <IMAGE>:$BUILD_NUMBER --destination=<IMAGE>:latest'
+                sh 'executor --context=dir://$WORKSPACE --destination=jym716/image_test:$BUILD_NUMBER --destination=jym716/image_test:latest'
             }
         }
     }
